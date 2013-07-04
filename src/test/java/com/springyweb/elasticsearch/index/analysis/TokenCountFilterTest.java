@@ -9,6 +9,7 @@ import java.io.Reader;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.BaseTokenStreamTestCase;
 import org.apache.lucene.analysis.TokenStream;
+import org.apache.lucene.analysis.Tokenizer;
 import org.apache.lucene.analysis.path.PathHierarchyTokenizer;
 import org.junit.Test;
 
@@ -19,10 +20,14 @@ import org.junit.Test;
 public class TokenCountFilterTest {
 
     private class TestAnalyzer extends Analyzer {
-      @Override
-      public TokenStream tokenStream(final String fieldName, final Reader reader) {
-        return new TokenCountFilter(new PathHierarchyTokenizer(reader));
-      }   
+
+	@Override
+	protected TokenStreamComponents createComponents(String fieldName, Reader reader) {
+		Tokenizer source = new PathHierarchyTokenizer(reader);
+	     TokenStream filter = new TokenCountFilter(source);
+	     return new TokenStreamComponents(source, filter);
+
+	}   
     }
     
     /**

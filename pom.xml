@@ -7,8 +7,8 @@
     <version>0.0.1-SNAPSHOT</version>
 
     <properties>
-        <elasticsearch.version>0.18.5</elasticsearch.version>
-        <lucene.version>3.5.0</lucene.version>
+        <elasticsearch.version>0.90.1</elasticsearch.version>
+        <lucene.version>4.3.0</lucene.version>
         <junit.version>4.10</junit.version>
         <java.source.version></java.source.version>
         <java.target.version></java.target.version>
